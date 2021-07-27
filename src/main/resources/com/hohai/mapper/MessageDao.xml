@@ -1,0 +1,34 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hohai.dao.MessageDao">
+
+    <insert id="saveMessage" parameterType="com.hohai.entity.Message">
+        insert into t_message(nickname,email,content,avatar,create_time,parent_message_id,admin_message)
+        values (#{nickname},#{email},#{content},#{avatar},#{createTime},#{parentMessageId},#{adminMessage})
+    </insert>
+
+    <delete id="deleteMessage">
+        delete from t_message where id=#{id}
+    </delete>
+
+    <select id="findParentMessage" resultType="com.hohai.entity.Message">
+        select *
+        from t_message
+        where parent_message_id=#{id}
+        order by create_time desc
+    </select>
+
+    <select id="findChildMessage" resultType="com.hohai.entity.Message">
+        select *
+        from t_message
+        where parent_message_id=#{id}
+        order by create_time desc
+    </select>
+
+    <select id="findAfterChildMessage" resultType="com.hohai.entity.Message">
+        select *
+        from t_message
+        where parent_message_id=#{id}
+        order by create_time desc
+    </select>
+
+</mapper>

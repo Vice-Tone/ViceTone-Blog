@@ -1,0 +1,23 @@
+spring:
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+
+mybatis:
+  type-aliases-package: com.hohai.entity
+  mapper-locations: classpath:com/hohai/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+comment.avatar: /images/avatar.png
+message.avatar: /images/avatar.png
+
+server:
+  port: 8081
+
+
+# ES配置
+elasticsearch:
+  host: 127.0.0.1
+  port: 9200

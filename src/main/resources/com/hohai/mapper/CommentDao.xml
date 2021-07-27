@@ -1,0 +1,40 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hohai.dao.CommentDao">
+
+
+    <insert id="saveComment" parameterType="com.hohai.entity.Comment">
+        insert into t_comment (nickname,email,content,avatar,create_time,blog_id,parent_comment_id,admin_comment)
+        values (#{nickname},#{email},#{content},#{avatar},#{createTime},#{blogId},#{parentCommentId},#{adminComment});
+    </insert>
+
+
+    <delete id="deleteComment">
+        delete from t_comment where id=#{id}
+    </delete>
+
+
+    <select id="findByBlogIdParentIdNull" resultType="com.hohai.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId} and parent_comment_id=#{blogParentId}
+        order by create_time desc
+    </select>
+
+
+    <select id="findByBlogIdParentIdNotNull" resultType="com.hohai.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId} and parent_comment_id=#{id}
+        order by create_time desc
+    </select>
+
+
+    <select id="findByBlogIdAndChildId" resultType="com.hohai.entity.Comment">
+        select *
+        from t_comment
+        where blog_id = #{blogId} and parent_comment_id=#{childId}
+        order by create_time desc
+    </select>
+
+
+</mapper>
